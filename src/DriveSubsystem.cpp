@@ -40,13 +40,13 @@ void DriveSubsystem::RobotInit()
     m_rlmotor = new Victor(c_rlmotor_PWMid);
     m_rrmotor = new Victor(c_rrmotor_PWMid);
 
-    m_robotDrive = new frc::RobotDrive(m_flmotor, m_rlmotor, m_frmotor, m_rrmotor);
-    m_robotDrive->SetSafetyEnabled(false);
+    m_flmotor->SetInverted(c_kflmotor_inversed);
+    m_frmotor->SetInverted(c_kfrmotor_inversed);
+    m_rlmotor->SetInverted(c_krlmotor_inversed);
+    m_rrmotor->SetInverted(c_krrmotor_inversed);
 
-    m_robotDrive->SetInvertedMotor(frc::RobotDrive::kFrontLeftMotor, c_kflmotor_inversed);
-    m_robotDrive->SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, c_krlmotor_inversed);
-    m_robotDrive->SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, c_kfrmotor_inversed);
-    m_robotDrive->SetInvertedMotor(frc::RobotDrive::kRearRightMotor, c_krrmotor_inversed);
+    m_robotDrive = new frc::MecanumDrive(*m_flmotor, *m_rlmotor, *m_frmotor, *m_rrmotor);
+    m_robotDrive->SetSafetyEnabled(false);
 
     try {
     	m_ahrs = new AHRS(SerialPort::Port::kUSB);
@@ -75,7 +75,7 @@ void DriveSubsystem::TestInit() {}
 
 void DriveSubsystem::DisabledPeriodic()
 {
-    m_robotDrive->MecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
+    m_robotDrive->DriveCartesian(0.0, 0.0, 0.0, 0.0);
 }
 
 void DriveSubsystem::TeleopPeriodic()
@@ -105,7 +105,7 @@ void DriveSubsystem::TeleopPeriodic()
     }
 
     /* Move the robot */
-    m_robotDrive->MecanumDrive_Cartesian(jsX, jsY, jsT, gyroAngle);
+    m_robotDrive->DriveCartesian(jsX, jsY, jsT, gyroAngle);
 }
 
 void DriveSubsystem::AutonomousPeriodic() {}

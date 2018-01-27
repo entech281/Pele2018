@@ -17,7 +17,7 @@ public:
 
 protected:
     DriveSubsystem* m_drive;
-    LiveWindow* m_lw;
+    // LiveWindow* m_lw;
 
     std::list<RobotSubsystem*> m_robotSubsystems;
 

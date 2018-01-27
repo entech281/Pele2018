@@ -10,7 +10,7 @@
 
 EntechRobot::EntechRobot()
     : m_drive(NULL)
-    , m_lw(NULL)
+    // , m_lw(NULL)
 {
     m_robotSubsystems.clear();
 }
@@ -19,7 +19,7 @@ EntechRobot::~EntechRobot() {}
 
 void EntechRobot::RobotInit()
 {
-    m_lw = frc::LiveWindow::GetInstance();
+    // m_lw = frc::LiveWindow::GetInstance();
     m_drive = new DriveSubsystem(this,"drive");
 
 #if USB_CAMERA
@@ -132,7 +132,7 @@ void EntechRobot::TestInit()
 void EntechRobot::TestPeriodic()
 {
     /* Update Live Window */
-    m_lw->Run();
+    // m_lw->Run();
 
     for (std::list<RobotSubsystem*>::iterator it = m_robotSubsystems.begin();
          it != m_robotSubsystems.end(); ++it) {

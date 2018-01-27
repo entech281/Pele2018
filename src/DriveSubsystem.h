@@ -34,7 +34,7 @@ private:
     Victor* m_flmotor;
     Victor* m_rrmotor;
     Victor* m_rlmotor;
-    frc::RobotDrive* m_robotDrive;
+    frc::MecanumDrive* m_robotDrive;
     AHRS *m_ahrs;
     bool m_fieldAbsolute;
     OperatorButton *m_toggleFieldAbsoluteButton;

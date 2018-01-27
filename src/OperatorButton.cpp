@@ -9,6 +9,8 @@ OperatorButton::OperatorButton(frc::Joystick *js, int number)
 {
 }
 
+#if 0
+// This code is depricated in WPI
 OperatorButton::OperatorButton(int js, int number)
 	: m_buttonNum(number)
     , m_lastState(false)
@@ -22,6 +24,7 @@ OperatorButton::OperatorButton(int number)
 {
 	m_js = frc::Joystick::GetStickForPort(c_joystickLeftPort);
 }
+#endif
 
 OperatorButton::~OperatorButton()
 {
